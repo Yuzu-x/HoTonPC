@@ -37,6 +37,7 @@ public class TurnManager : MonoBehaviour
     static void StartTurn()
     {
         CharacterController.actionPoints = 4f;
+        CharacterController.moveActionsThisTurn = 1f;
 
         if(turnTeam.Count > 0)
         {

@@ -19,6 +19,7 @@ public class CharacterController : MonoBehaviour
     public float characterMoveSpeed = 2;
     public float jumpVelocity = 4.5f;
     public static float actionPoints = 4f;
+    public static float moveActionsThisTurn = 1f;
 
     Vector3 velocity = new Vector3();
     Vector3 heading = new Vector3();
@@ -172,6 +173,7 @@ public class CharacterController : MonoBehaviour
             RemoveSelectableTiles();
             isMoving = false;
             actionPoints = actionPoints - 1f;
+            currentState = TurnState.WAITING;
             
 
         }

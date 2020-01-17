@@ -58,13 +58,19 @@ public class PlayerController : CharacterController
         {
             return;
         }
+
+        if(actionPoints <= 0)
+        {
+            if(currentState != TurnState.LONGCASTING)
+            {
+                currentState = TurnState.WAITING;
+            }
+        }
     }
 
     void MoveSelected()
         {
 
-            if (actionPoints > 0)
-            {
                 if (!isMoving)
                 {
 
@@ -76,12 +82,6 @@ public class PlayerController : CharacterController
                 {
                 Move();
                 }
-            }
-            else
-            {
-                TurnManager.FinishTurn();
-
-            }
         }
 
     void CheckMouse()
@@ -113,6 +113,15 @@ public class PlayerController : CharacterController
 
     public void MoveButton()
     {
-        currentState = TurnState.MOVING;
+        if (moveActionsThisTurn > 0)
+        {
+            currentState = TurnState.MOVING;
+            //moveActionsThisTurn = moveActionsThisTurn - 1;
+        }
+    }
+
+    public void EndTurnButton()
+    {
+        TurnManager.FinishTurn();
     }
 }
