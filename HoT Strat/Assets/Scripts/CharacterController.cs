@@ -1,38 +1,54 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour
 {
+    //Determine the turn
     public bool myTurn = false;
 
+    //Find tiles to move to
     List<Tile> selectableTiles = new List<Tile>();
     GameObject[] tiles;
 
+    //Orientate Self
     Stack<Tile> path = new Stack<Tile>();
     Tile initialTile;
 
+    //Variables of movement
     public bool isMoving = false;
     public bool hasSelectedMove = false;
-    public int moveRange = 5;
-    public float jumpHeight = 3;
-    public float characterMoveSpeed = 2;
-    public float jumpVelocity = 4.5f;
-    public static float actionPoints = 4f;
-    public static float moveActionsThisTurn = 1f;
-    public bool activeCharacter = false;
+    public bool isActive = false;
 
+    public static float moveActionsThisTurn = 1f;
+    public static float activeCharacter = 0f;
+
+    //How should Character travel
     Vector3 velocity = new Vector3();
     Vector3 heading = new Vector3();
 
+    //Can Character go there
     float halfHeight = 0;
 
+    //Variables of Y axis
     bool fallingDown = false;
     bool jumpingUp = false;
     bool moveToEdge = false;
     Vector3 jumpTarget;
 
+    //Enemies land next to the Player
     public Tile actualTargetTile;
+
+    //Character Attributes
+    public int moveRange = 5;
+    public float jumpHeight = 3;
+    public float characterMoveSpeed = 2;
+    public float jumpVelocity = 4.5f;
+    public static float actionPoints = 4f;
+    public float maxHealth = 100f;
+    public float currentHealth = 10f;
+    public Image playerHealth;
 
 
     public enum TurnState
@@ -58,7 +74,7 @@ public class CharacterController : MonoBehaviour
 
     }
 
-
+    //Movement Handling
     public void GetInitialTile()
     {
         initialTile = GetTargetTile(gameObject);
@@ -411,21 +427,36 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    public void SelectedMove()
+    {
+        hasSelectedMove = true;
+
+    }
+
+    //Game Turn Handling
     public void TurnBegin()
     {
         myTurn = true;
-        gameObject.tag = "ActivePlayer";
     }
 
     public void TurnEnd()
     {
         myTurn = false;
-        activeCharacter = false;
     }
 
-    public void SelectedMove()
-    {
-        hasSelectedMove = true;
+    //Character Resources
 
+     
+    public void TakeDamage(float damageDealt)
+    {
+        currentHealth -= damageDealt;
+
+        playerHealth.fillAmount = currentHealth / maxHealth;
+
+        if(currentHealth <= 0)
+        {
+            currentState = TurnState.DEAD;
+
+        }
     }
 }

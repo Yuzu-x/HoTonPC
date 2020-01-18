@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerController : CharacterController
 {
-    private float currentHealth = 200f;
-    private float maxHealth = 250f;
-    public Image PlayerHealth;
 
     
     void Start()
@@ -15,12 +12,20 @@ public class PlayerController : CharacterController
         Init();
 
         currentState = TurnState.WAITING;
+        currentHealth = maxHealth;
 
     }
 
-
+    //State Machine
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(10f);
+
+        }
+
         Debug.DrawRay(transform.position, transform.forward);
 
         switch (currentState)
@@ -70,7 +75,11 @@ public class PlayerController : CharacterController
                 {
                     if (charHit.collider.tag == "Player")
                     {
-                        activeCharacter = true;
+                        SwapActivePlayer("ActivePlayer");
+                        gameObject.tag = "ActivePlayer";
+                        isActive = true;
+
+
                     }
                 }
 
@@ -84,23 +93,27 @@ public class PlayerController : CharacterController
                 currentState = TurnState.WAITING;
             }
         }
+
     }
 
+    //Movement Handling
     void MoveSelected()
+    {
+        if (isActive)
         {
+            if (!isMoving)
+            {
 
-                if (!isMoving)
-                {
+                FindSelectableTiles();
+                CheckMouse();
 
-                    FindSelectableTiles();
-                    CheckMouse();
-
-                }
-                else
-                {
+            }
+            else
+            {
                 Move();
-                }
+            }
         }
+    }
 
 
 
@@ -145,21 +158,26 @@ public class PlayerController : CharacterController
         }
     }
 
+    //Character Resources
     void PlayerCharacterHealth()
     {
 
     }
 
+    //Player UI Events
     public void MoveButton()
     {
-        if (moveActionsThisTurn > 0)
+        if (isActive)
         {
-            currentState = TurnState.MOVING;
-            moveActionsThisTurn = moveActionsThisTurn - 1;
-        }
-        else
-        {
-            currentState = TurnState.WAITING;
+            if (moveActionsThisTurn > 0)
+            {
+                currentState = TurnState.MOVING;
+                moveActionsThisTurn = moveActionsThisTurn - 1;
+            }
+            else
+            {
+                currentState = TurnState.WAITING;
+            }
         }
     }
 
@@ -167,6 +185,19 @@ public class PlayerController : CharacterController
     {
         TurnManager.FinishTurn();
         gameObject.tag = "Player";
+        isActive = false;
+    }
 
+    //Team Management
+    void SwapActivePlayer(string _tag)
+    {
+        GameObject needSwap = GameObject.FindWithTag(_tag);
+
+        if(needSwap)
+        {
+            gameObject.tag = "Player";
+            isActive = false;
+
+        }
     }
 }

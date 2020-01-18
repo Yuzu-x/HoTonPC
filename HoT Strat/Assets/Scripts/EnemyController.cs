@@ -7,8 +7,8 @@ public class EnemyController : CharacterController
     GameObject target;
 
 
-    private float currentHealth = 200f;
-    private float maxHealth = 250f;
+    private float enemyCurHealth = 200f;
+    private float enemyMaxHealth = 250f;
 
     void Start()
     {
@@ -70,7 +70,9 @@ public class EnemyController : CharacterController
             }
             else
             {
+                gameObject.tag = "ActivePlayer";
                 Move();
+                //moveActionsThisTurn = moveActionsThisTurn - 1f;
             }
         }
         else

@@ -29,24 +29,24 @@ public class CameraController : MonoBehaviour
 
     }
 
-    private void Update()
-    {
+  //  private void Update()
+   // {
 
 
-        activePlayer = GameObject.FindGameObjectsWithTag("ActivePlayer");
+      //  activePlayer = GameObject.FindGameObjectsWithTag("ActivePlayer");
 
-        FindActivePlayer("ActivePlayer");
+     //   FindActivePlayer("ActivePlayer");
 
-        if (playerTransform)
-        {
-            Vector3 point = mainCam.WorldToViewportPoint(playerTransform.position);
-            Vector3 delta = playerTransform.position - mainCam.ViewportToWorldPoint(new Vector3(0.2f, .43f, point.z));
-            Vector3 destination = transform.position + delta;
-            transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, 0);
+      //  if (playerTransform)
+     //   {
+      //      Vector3 point = mainCam.WorldToViewportPoint(playerTransform.position);
+       //     Vector3 delta = playerTransform.position - mainCam.ViewportToWorldPoint(new Vector3(0.2f, .43f, point.z));
+      //      Vector3 destination = transform.position + delta;
+       //     transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, 0) + cameraOffset;
 
-        }
+      //  }
 
-    }
+   // }
 
     void FindNewActivePlayer(Transform _playerTransform)
     {
