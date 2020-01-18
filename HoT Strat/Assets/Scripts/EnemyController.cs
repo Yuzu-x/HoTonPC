@@ -76,6 +76,7 @@ public class EnemyController : CharacterController
         else
         {
             TurnManager.FinishTurn();
+            gameObject.tag = "NPC";
         }
     }
     void CalculatePath()

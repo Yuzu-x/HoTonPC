@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    private Camera mainCam;
+    private Vector3 velocity = Vector3.zero;
     public Transform playerTransform;
+    int foundActive = 0;
+    GameObject[] activePlayer = null;
 
     private Vector3 cameraOffset;
 
@@ -19,11 +23,39 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        mainCam = GetComponent<Camera>();
+
         cameraOffset = transform.position - playerTransform.position;
+
+    }
+
+    private void Update()
+    {
+
+
+        activePlayer = GameObject.FindGameObjectsWithTag("ActivePlayer");
+
+        FindActivePlayer("ActivePlayer");
+
+        if (playerTransform)
+        {
+            Vector3 point = mainCam.WorldToViewportPoint(playerTransform.position);
+            Vector3 delta = playerTransform.position - mainCam.ViewportToWorldPoint(new Vector3(0.2f, .43f, point.z));
+            Vector3 destination = transform.position + delta;
+            transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, 0);
+
+        }
+
+    }
+
+    void FindNewActivePlayer(Transform _playerTransform)
+    {
+        playerTransform = _playerTransform;
     }
 
     void LateUpdate()
     {
+
         Vector3 newPosition = playerTransform.position + cameraOffset;
 
         transform.position = Vector3.Slerp(transform.position, newPosition, cameraSmooth);
@@ -46,10 +78,21 @@ public class CameraController : MonoBehaviour
 
         }
 
-        if (lookAtPlayer || RotateAroundPlayer)
-        {
-            transform.LookAt(playerTransform);
+    }
 
+    void FindActivePlayer(string _tag)
+    {
+
+        GameObject act = GameObject.FindWithTag(_tag);
+
+        if(act)
+        {
+            FindNewActivePlayer(act.transform);
+
+        }
+        else
+        {
+            Debug.Log("Unable to find " + _tag);
         }
     }
 }

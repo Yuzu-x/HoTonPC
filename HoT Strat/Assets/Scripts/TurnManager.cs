@@ -8,10 +8,15 @@ public class TurnManager : MonoBehaviour
     static Queue<string> turnKey = new Queue<string>();
     static Queue<CharacterController> turnTeam = new Queue<CharacterController>();
 
+    public static float turnCount = 0f;
+    //public Text turnCountText;
+
+
+
 
     void Start()
     {
-        
+       
     }
 
     void Update()
@@ -39,6 +44,7 @@ public class TurnManager : MonoBehaviour
         CharacterController.actionPoints = 4f;
         CharacterController.moveActionsThisTurn = 1f;
 
+
         if(turnTeam.Count > 0)
         {
             turnTeam.Peek().TurnBegin();
@@ -61,6 +67,7 @@ public class TurnManager : MonoBehaviour
             string team = turnKey.Dequeue();
             turnKey.Enqueue(team);
             InitTeamTurnQueue();
+            turnCount = turnCount + 1f;
 
         }
     }

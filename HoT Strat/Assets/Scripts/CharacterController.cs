@@ -20,6 +20,7 @@ public class CharacterController : MonoBehaviour
     public float jumpVelocity = 4.5f;
     public static float actionPoints = 4f;
     public static float moveActionsThisTurn = 1f;
+    public bool activeCharacter = false;
 
     Vector3 velocity = new Vector3();
     Vector3 heading = new Vector3();
@@ -32,6 +33,7 @@ public class CharacterController : MonoBehaviour
     Vector3 jumpTarget;
 
     public Tile actualTargetTile;
+
 
     public enum TurnState
     {
@@ -55,6 +57,7 @@ public class CharacterController : MonoBehaviour
         TurnManager.AddUnit(this);
 
     }
+
 
     public void GetInitialTile()
     {
@@ -411,11 +414,13 @@ public class CharacterController : MonoBehaviour
     public void TurnBegin()
     {
         myTurn = true;
+        gameObject.tag = "ActivePlayer";
     }
 
     public void TurnEnd()
     {
         myTurn = false;
+        activeCharacter = false;
     }
 
     public void SelectedMove()

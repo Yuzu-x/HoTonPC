@@ -58,6 +58,24 @@ public class PlayerController : CharacterController
         {
             return;
         }
+        else
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                Ray charay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                RaycastHit charHit;
+
+                if (Physics.Raycast(charay, out charHit))
+                {
+                    if (charHit.collider.tag == "Player")
+                    {
+                        activeCharacter = true;
+                    }
+                }
+
+            }
+        }
 
         if(actionPoints <= 0)
         {
@@ -84,8 +102,29 @@ public class PlayerController : CharacterController
                 }
         }
 
+
+
     void CheckMouse()
     {
+
+        Ray pathVisRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit visHit;
+
+        if(Physics.Raycast(pathVisRay, out visHit))
+        {
+            if(visHit.collider.tag == "Tile")
+            {
+                Tile t = visHit.collider.GetComponent<Tile>();
+
+                if(t.selectable)
+                {
+                    t.GetComponent<Renderer>().material.color = Color.red;
+
+                }
+            }
+        }
+
         if(Input.GetMouseButtonUp(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -116,12 +155,18 @@ public class PlayerController : CharacterController
         if (moveActionsThisTurn > 0)
         {
             currentState = TurnState.MOVING;
-            //moveActionsThisTurn = moveActionsThisTurn - 1;
+            moveActionsThisTurn = moveActionsThisTurn - 1;
+        }
+        else
+        {
+            currentState = TurnState.WAITING;
         }
     }
 
     public void EndTurnButton()
     {
         TurnManager.FinishTurn();
+        gameObject.tag = "Player";
+
     }
 }
