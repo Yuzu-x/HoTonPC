@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
@@ -9,14 +10,13 @@ public class TurnManager : MonoBehaviour
     static Queue<CharacterController> turnTeam = new Queue<CharacterController>();
 
     public static float turnCount = 0f;
-    //public Text turnCountText;
-
-
+    public Text turnCountText;
 
 
     void Start()
     {
-       
+        TurnCountUpdate();
+
     }
 
     void Update()
@@ -25,6 +25,9 @@ public class TurnManager : MonoBehaviour
         {
             InitTeamTurnQueue();
         }
+
+        TurnCountUpdate();
+
     }
 
     static void InitTeamTurnQueue()
@@ -36,20 +39,29 @@ public class TurnManager : MonoBehaviour
             turnTeam.Enqueue(unit);
         }
 
+        turnCount = turnCount + 1f;
+
         StartTurn();
     }
 
     static void StartTurn()
     {
-        CharacterController.actionPoints = 4f;
+        CharacterController.currentActionPoints = CharacterController.maxActionPoints;
         CharacterController.moveActionsThisTurn = 1f;
 
 
-        if(turnTeam.Count > 0)
+
+
+        if (turnTeam.Count > 0)
         {
             turnTeam.Peek().TurnBegin();
 
         }
+    }
+
+    void TurnCountUpdate()
+    {
+       turnCountText.text = "Turn " + turnCount;
     }
 
     public static void FinishTurn()

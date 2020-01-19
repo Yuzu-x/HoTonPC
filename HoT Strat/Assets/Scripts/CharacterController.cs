@@ -20,6 +20,8 @@ public class CharacterController : MonoBehaviour
     public bool isMoving = false;
     public bool hasSelectedMove = false;
     public bool isActive = false;
+    public bool moveSelected = false;
+    public bool runSelected = false;
 
     public static float moveActionsThisTurn = 1f;
     public static float activeCharacter = 0f;
@@ -41,14 +43,22 @@ public class CharacterController : MonoBehaviour
     public Tile actualTargetTile;
 
     //Character Attributes
-    public int moveRange = 5;
+    public float moveRange;
+    public float runRange;
     public float jumpHeight = 3;
     public float characterMoveSpeed = 2;
     public float jumpVelocity = 4.5f;
-    public static float actionPoints = 4f;
+    public static float maxActionPoints = 4f;
+    public static float currentActionPoints = 0f;
+    public Image actionPointImage;
+    public Image quickRefAPImage;
+    public float pointSpent = 0f;
     public float maxHealth = 100f;
     public float currentHealth = 10f;
     public Image playerHealth;
+    public Image quickRefHPImage;
+    public static float fatigue = 0f;
+
 
 
     public enum TurnState
@@ -191,9 +201,18 @@ public class CharacterController : MonoBehaviour
         {
             RemoveSelectableTiles();
             isMoving = false;
-            actionPoints = actionPoints - 1f;
+            SpendActionPoint(1f);
             currentState = TurnState.WAITING;
-            
+
+            if (moveSelected)
+            {
+                moveActionsThisTurn = moveActionsThisTurn - 1;
+            }
+            else if (runSelected)
+            {
+                Fatigued(1);
+
+            }
 
         }
     }
@@ -427,16 +446,16 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void SelectedMove()
-    {
-        hasSelectedMove = true;
-
-    }
 
     //Game Turn Handling
     public void TurnBegin()
     {
         myTurn = true;
+
+        if (fatigue > 0)
+        {
+            fatigue = fatigue - 1;
+        }
     }
 
     public void TurnEnd()
@@ -452,11 +471,33 @@ public class CharacterController : MonoBehaviour
         currentHealth -= damageDealt;
 
         playerHealth.fillAmount = currentHealth / maxHealth;
+        quickRefHPImage.fillAmount = currentHealth / maxHealth;
 
         if(currentHealth <= 0)
         {
             currentState = TurnState.DEAD;
 
         }
+    }
+
+    public void SpendActionPoint (float pointSpent)
+    {
+        currentActionPoints -= pointSpent;
+
+        actionPointImage.fillAmount = currentActionPoints / maxActionPoints;
+        quickRefAPImage.fillAmount = currentActionPoints / maxActionPoints;
+    }
+
+    public void Fatigued(float isFatigued)
+    {
+        fatigue += isFatigued;
+    }
+
+    public void Healed(float healthReturned)
+    {
+        currentHealth += healthReturned;
+
+        playerHealth.fillAmount = currentHealth / maxHealth;
+        quickRefHPImage.fillAmount = currentHealth / maxHealth;
     }
 }

@@ -7,13 +7,18 @@ public class CameraController : MonoBehaviour
     private Camera mainCam;
     private Vector3 velocity = Vector3.zero;
     public Transform playerTransform;
+    public Transform cameraTracker;
     int foundActive = 0;
     GameObject[] activePlayer = null;
+    public Transform cameraControl;
+    public bool foundCamTarget = false;
 
     private Vector3 cameraOffset;
 
     [Range(0.01f, 1.0f)]
-    public float cameraSmooth = 0.5f;
+    public float cameraSmooth = 1f;
+
+    public float involTurning = 10f;
 
     public bool lookAtPlayer = false;
 
@@ -25,40 +30,32 @@ public class CameraController : MonoBehaviour
     {
         mainCam = GetComponent<Camera>();
 
-        cameraOffset = transform.position - playerTransform.position;
+       // cameraOffset = transform.position - cameraTracker.position;
+
 
     }
 
-  //  private void Update()
-   // {
-
-
-      //  activePlayer = GameObject.FindGameObjectsWithTag("ActivePlayer");
-
-     //   FindActivePlayer("ActivePlayer");
-
-      //  if (playerTransform)
-     //   {
-      //      Vector3 point = mainCam.WorldToViewportPoint(playerTransform.position);
-       //     Vector3 delta = playerTransform.position - mainCam.ViewportToWorldPoint(new Vector3(0.2f, .43f, point.z));
-      //      Vector3 destination = transform.position + delta;
-       //     transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, 0) + cameraOffset;
-
-      //  }
-
-   // }
-
-    void FindNewActivePlayer(Transform _playerTransform)
-    {
-        playerTransform = _playerTransform;
-    }
-
-    void LateUpdate()
+  void Update()
     {
 
-        Vector3 newPosition = playerTransform.position + cameraOffset;
 
-        transform.position = Vector3.Slerp(transform.position, newPosition, cameraSmooth);
+        activePlayer = GameObject.FindGameObjectsWithTag("ActivePlayer");
+
+       FindActivePlayer("ActivePlayer");
+
+        if (foundCamTarget)
+        {
+            cameraControl.SetParent(playerTransform, false);
+            Debug.Log("To confirm, the active player is " + playerTransform);
+        }
+
+        cameraTracker.eulerAngles = new Vector3(cameraTracker.eulerAngles.x, involTurning, cameraTracker.eulerAngles.z);
+
+       // Vector3 newPosition = cameraTracker.position + cameraOffset;
+
+      //  transform.position = Vector3.Slerp(transform.position, newPosition, cameraSmooth);
+
+
 
         if (Input.GetKey(KeyCode.LeftAlt))
         {
@@ -69,8 +66,8 @@ public class CameraController : MonoBehaviour
         }
         else
             RotateAroundPlayer = false;
-        
-        if(RotateAroundPlayer)
+
+        if (RotateAroundPlayer)
         {
             Quaternion camTurnAngle = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * RotationSpeed, Vector3.up);
 
@@ -79,6 +76,14 @@ public class CameraController : MonoBehaviour
         }
 
     }
+
+    void FindNewActivePlayer(Transform _playerTransform)
+    {
+        playerTransform = _playerTransform;
+        Debug.Log("The active player is " + _playerTransform);
+        foundCamTarget = true;
+    }
+
 
     void FindActivePlayer(string _tag)
     {

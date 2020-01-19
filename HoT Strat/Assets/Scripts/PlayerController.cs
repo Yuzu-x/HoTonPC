@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class PlayerController : CharacterController
 {
+    public GameObject activePlayer = null;
+    public bool isPlayer = true;
+    public GameObject playerIndicator = null;
+    public bool pIndicator = false;
 
-    
+
     void Start()
     {
         Init();
@@ -26,6 +30,9 @@ public class PlayerController : CharacterController
 
         }
 
+
+        actionPointImage.fillAmount = currentActionPoints / maxActionPoints;
+
         Debug.DrawRay(transform.position, transform.forward);
 
         switch (currentState)
@@ -43,7 +50,7 @@ public class PlayerController : CharacterController
                 break;
 
             case (TurnState.RUNNING):
-
+                MoveSelected();
                 break;
 
             case (TurnState.RUSHING):
@@ -51,7 +58,8 @@ public class PlayerController : CharacterController
                 break;
 
             case (TurnState.WAITING):
-
+                moveSelected = false;
+                runSelected = false;
                 break;
 
             case (TurnState.DEAD):
@@ -78,7 +86,7 @@ public class PlayerController : CharacterController
                         SwapActivePlayer("ActivePlayer");
                         gameObject.tag = "ActivePlayer";
                         isActive = true;
-
+                        activePlayer = GameObject.Find("Active Player");
 
                     }
                 }
@@ -86,7 +94,24 @@ public class PlayerController : CharacterController
             }
         }
 
-        if(actionPoints <= 0)
+
+        if (isActive)
+        {
+            if (!pIndicator)
+            {
+                pIndicator = true;
+               GameObject newIndicator =  Instantiate(playerIndicator, transform.position, Quaternion.identity) as GameObject;
+                newIndicator.transform.SetParent(activePlayer.transform);
+            }
+        }
+        else
+        {
+            pIndicator = false;
+        }
+        
+
+
+        if (currentActionPoints <= 0)
         {
             if(currentState != TurnState.LONGCASTING)
             {
@@ -167,17 +192,34 @@ public class PlayerController : CharacterController
     //Player UI Events
     public void MoveButton()
     {
+
+        moveSelected = true;
+        runSelected = false;
+
+
+
         if (isActive)
         {
             if (moveActionsThisTurn > 0)
             {
                 currentState = TurnState.MOVING;
-                moveActionsThisTurn = moveActionsThisTurn - 1;
             }
             else
             {
                 currentState = TurnState.WAITING;
             }
+        }
+    }
+
+    public void RunButton()
+    {
+        runSelected = true;
+        moveSelected = false;
+
+        if (isActive)
+        {
+            moveRange = runRange - fatigue;
+            currentState = TurnState.RUNNING;
         }
     }
 

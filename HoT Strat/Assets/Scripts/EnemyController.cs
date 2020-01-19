@@ -58,21 +58,24 @@ public class EnemyController : CharacterController
             return;
         }
 
-        if (actionPoints > 0)
+        if (currentActionPoints > 0)
         {
-            if (!isMoving)
+            if (moveActionsThisTurn > 0)
             {
-                FindNearestTarget();
-                CalculatePath();
-                FindSelectableTiles();
-                actualTargetTile.target = true;
+                if (!isMoving)
+                {
+                    FindNearestTarget();
+                    CalculatePath();
+                    FindSelectableTiles();
+                    actualTargetTile.target = true;
 
-            }
-            else
-            {
-                gameObject.tag = "ActivePlayer";
-                Move();
-                //moveActionsThisTurn = moveActionsThisTurn - 1f;
+                }
+                else
+                {
+                    gameObject.tag = "ActivePlayer";
+                    moveSelected = true;
+                    Move();
+                }
             }
         }
         else
