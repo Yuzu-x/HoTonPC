@@ -7,72 +7,50 @@ public class CameraController : MonoBehaviour
     private Camera mainCam;
     private Vector3 velocity = Vector3.zero;
     public Transform playerTransform;
-    public Transform cameraTracker;
-    int foundActive = 0;
     GameObject[] activePlayer = null;
     public Transform cameraControl;
     public bool foundCamTarget = false;
+
+    public float camMoveVelocity = 10f;
+    public float camHeading = 0f;
+    Vector2 camInput;
 
     private Vector3 cameraOffset;
 
     [Range(0.01f, 1.0f)]
     public float cameraSmooth = 1f;
-
     public float involTurning = 10f;
-
-    public bool lookAtPlayer = false;
-
-    public bool RotateAroundPlayer = false;
-
-    public float RotationSpeed = 5f;
+    public float rotationSpeed = 5f;
 
     void Start()
     {
-        mainCam = GetComponent<Camera>();
-
-       // cameraOffset = transform.position - cameraTracker.position;
-
 
     }
 
-  void Update()
+    void Update()
     {
 
 
         activePlayer = GameObject.FindGameObjectsWithTag("ActivePlayer");
 
-       FindActivePlayer("ActivePlayer");
+        FindActivePlayer("ActivePlayer");
 
         if (foundCamTarget)
         {
             cameraControl.SetParent(playerTransform, false);
-            Debug.Log("To confirm, the active player is " + playerTransform);
         }
 
-        cameraTracker.eulerAngles = new Vector3(cameraTracker.eulerAngles.x, involTurning, cameraTracker.eulerAngles.z);
-
-       // Vector3 newPosition = cameraTracker.position + cameraOffset;
-
-      //  transform.position = Vector3.Slerp(transform.position, newPosition, cameraSmooth);
+        cameraControl.rotation = Quaternion.Euler(0, camHeading, 0);
 
 
-
-        if (Input.GetKey(KeyCode.LeftAlt))
+        if (Input.GetKey(KeyCode.Q))
         {
-            if (Input.GetKey(KeyCode.Mouse0))
-            {
-                RotateAroundPlayer = true;
-            }
+            camHeading = camHeading - rotationSpeed;
         }
-        else
-            RotateAroundPlayer = false;
 
-        if (RotateAroundPlayer)
+        if (Input.GetKey(KeyCode.E))
         {
-            Quaternion camTurnAngle = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * RotationSpeed, Vector3.up);
-
-            cameraOffset = camTurnAngle * cameraOffset;
-
+            camHeading = camHeading + rotationSpeed;
         }
 
     }
@@ -80,7 +58,6 @@ public class CameraController : MonoBehaviour
     void FindNewActivePlayer(Transform _playerTransform)
     {
         playerTransform = _playerTransform;
-        Debug.Log("The active player is " + _playerTransform);
         foundCamTarget = true;
     }
 
@@ -97,7 +74,25 @@ public class CameraController : MonoBehaviour
         }
         else
         {
+            ControlCamera();
             Debug.Log("Unable to find " + _tag);
         }
+    }
+
+    void ControlCamera()
+    {
+        Vector3 camContForward = cameraControl.forward;
+        Vector3 camContRight = cameraControl.right;
+        camContForward.y = 0;
+        camContRight.y = 0;
+        camContForward = camContForward.normalized;
+        camContRight = camContRight.normalized;
+
+        camInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        camInput = Vector2.ClampMagnitude(camInput, 1);
+
+        transform.position += (camContForward * camInput.y + camContRight * camInput.x) * Time.deltaTime * camMoveVelocity;
+
+
     }
 }

@@ -18,6 +18,7 @@ public class PlayerController : CharacterController
         currentState = TurnState.WAITING;
         currentHealth = maxHealth;
 
+        myTurn = true;
     }
 
     //State Machine

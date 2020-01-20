@@ -13,7 +13,8 @@ public class EnemyController : CharacterController
     void Start()
     {
         Init();
-
+        myTurn = false;
+        currentState = TurnState.WAITING;
 
     }
 
@@ -25,7 +26,7 @@ public class EnemyController : CharacterController
         switch (currentState)
         {
             case (TurnState.MOVING):
-
+                EnemyMovement();
                 break;
 
             case (TurnState.CASTING):
@@ -45,7 +46,7 @@ public class EnemyController : CharacterController
                 break;
 
             case (TurnState.WAITING):
-
+                ShouldEndTurn();
                 break;
 
             case (TurnState.DEAD):
@@ -58,30 +59,19 @@ public class EnemyController : CharacterController
             return;
         }
 
-        if (currentActionPoints > 0)
-        {
-            if (moveActionsThisTurn > 0)
-            {
+        if (currentActionPoints > 0 && moveActionsThisTurn > 0)
+        { 
+            
+                moveSelected = true;
+
                 if (!isMoving)
                 {
-                    FindNearestTarget();
-                    CalculatePath();
-                    FindSelectableTiles();
-                    actualTargetTile.target = true;
-
+                    currentState = TurnState.MOVING;
                 }
-                else
-                {
-                    gameObject.tag = "ActivePlayer";
-                    moveSelected = true;
-                    Move();
-                }
-            }
         }
         else
         {
-            TurnManager.FinishTurn();
-            gameObject.tag = "NPC";
+            ShouldEndTurn();
         }
     }
     void CalculatePath()
@@ -111,5 +101,40 @@ public class EnemyController : CharacterController
         }
 
         target = nearest;
+    }
+
+    void EnemyMovement()
+    {
+        if (!isMoving)
+        {
+            FindNearestTarget();
+            CalculatePath();
+            FindSelectableTiles();
+            actualTargetTile.target = true;
+
+        }
+        else
+        {
+            gameObject.tag = "ActivePlayer";
+            moveSelected = true;
+            Move();
+        }
+    }
+
+    void ShouldEndTurn()
+    {
+        if(currentActionPoints <= 0)
+        {
+            TurnManager.FinishTurn();
+            gameObject.tag = "NPC";
+
+        }
+
+        if(moveActionsThisTurn <= 0)
+        {
+            TurnManager.FinishTurn();
+            gameObject.tag = "NPC";
+
+        }
     }
 }

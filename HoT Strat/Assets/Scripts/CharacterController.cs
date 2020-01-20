@@ -48,8 +48,10 @@ public class CharacterController : MonoBehaviour
     public float jumpHeight = 3;
     public float characterMoveSpeed = 2;
     public float jumpVelocity = 4.5f;
-    public static float maxActionPoints = 4f;
-    public static float currentActionPoints = 0f;
+    public static float maxActionPoints;
+    public float maxActionPointsNS = 4f;
+    public static float currentActionPoints;
+    public float currentActionPointsNS = 0f;
     public Image actionPointImage;
     public Image quickRefAPImage;
     public float pointSpent = 0f;
@@ -81,6 +83,9 @@ public class CharacterController : MonoBehaviour
         halfHeight = GetComponent<Collider>().bounds.extents.y;
 
         TurnManager.AddUnit(this);
+
+        maxActionPoints = maxActionPointsNS;
+        currentActionPoints = currentActionPointsNS;
 
     }
 
@@ -155,6 +160,7 @@ public class CharacterController : MonoBehaviour
         path.Clear();
         tile.target = true;
         isMoving = true;
+        moveSelected = false;
 
         Tile next = tile;
         while(next != null)
@@ -196,13 +202,13 @@ public class CharacterController : MonoBehaviour
                 transform.position = target;
                 path.Pop();
             }
+
         }
         else
         {
             RemoveSelectableTiles();
             isMoving = false;
             SpendActionPoint(1f);
-            currentState = TurnState.WAITING;
 
             if (moveSelected)
             {
@@ -213,6 +219,8 @@ public class CharacterController : MonoBehaviour
                 Fatigued(1);
 
             }
+
+            currentState = TurnState.WAITING;
 
         }
     }
@@ -483,6 +491,7 @@ public class CharacterController : MonoBehaviour
     public void SpendActionPoint (float pointSpent)
     {
         currentActionPoints -= pointSpent;
+        currentActionPointsNS = currentActionPoints;
 
         actionPointImage.fillAmount = currentActionPoints / maxActionPoints;
         quickRefAPImage.fillAmount = currentActionPoints / maxActionPoints;
