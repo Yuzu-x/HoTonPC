@@ -12,9 +12,13 @@ public class TurnManager : MonoBehaviour
     public static float turnCount = 0f;
     public Text turnCountText;
 
+    public static bool playerTurn = false;
+    public static bool enemyTurn = false;
+
 
     void Start()
     {
+
         TurnCountUpdate();
 
     }
@@ -23,7 +27,10 @@ public class TurnManager : MonoBehaviour
     {
         if(turnTeam.Count == 0)
         {
-            InitTeamTurnQueue();
+            if (!ZeroTurnBehaviour.turnZero)
+            {
+                InitTeamTurnQueue();
+            }
         }
 
         TurnCountUpdate();
@@ -47,7 +54,7 @@ public class TurnManager : MonoBehaviour
     static void StartTurn()
     {
         CharacterController.currentActionPoints = CharacterController.maxActionPoints;
-        CharacterController.moveActionsThisTurn = 1f;
+        CharacterController.moveActionsThisTurn = 0f;
 
 
 
@@ -61,7 +68,7 @@ public class TurnManager : MonoBehaviour
 
     void TurnCountUpdate()
     {
-       turnCountText.text = "Turn " + turnCount;
+            turnCountText.text = "Turn " + turnCount;
     }
 
     public static void FinishTurn()

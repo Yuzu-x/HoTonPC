@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5546360280048481910}
   - component: {fileID: 5546360280048481911}
   - component: {fileID: 5546360280048481907}
+  - component: {fileID: 6086715951075191056}
+  - component: {fileID: 95649301743897130}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -117,6 +119,8 @@ MonoBehaviour:
   jumpHeight: 1
   characterMoveSpeed: 2
   jumpVelocity: 4.5
+  maxActionPointsNS: 4
+  currentActionPointsNS: 0
   actionPointImage: {fileID: 0}
   quickRefAPImage: {fileID: 0}
   pointSpent: 0
@@ -130,3 +134,35 @@ MonoBehaviour:
   playerIndicator: {fileID: 575273908842672021, guid: a1ffee175fc614c488a2915c754bb18e,
     type: 3}
   pIndicator: 0
+  moveActual: 6
+  movesMadeThisTurn: 0
+  myInventory: 0
+  playerInventory: {fileID: 0}
+  activeInventorySlotPanel: {fileID: 0}
+  passiveInventorySlotPanel: {fileID: 0}
+  interestTime: 0
+--- !u!114 &6086715951075191056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5546360280048481913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fb228b49cd36a458bac3d8b2619085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRadius: 1
+--- !u!114 &95649301743897130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5546360280048481913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87b8f7445f9589e43acbb9658aaee940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

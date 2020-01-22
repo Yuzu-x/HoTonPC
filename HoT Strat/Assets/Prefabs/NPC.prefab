@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7861119648255627765}
   - component: {fileID: 7861119648255627722}
   - component: {fileID: 7861119648255627723}
+  - component: {fileID: 8964482985308790825}
   m_Layer: 0
   m_Name: NPC
   m_TagString: NPC
@@ -117,6 +118,8 @@ MonoBehaviour:
   jumpHeight: 3
   characterMoveSpeed: 2
   jumpVelocity: 4.5
+  maxActionPointsNS: 4
+  currentActionPointsNS: 0
   actionPointImage: {fileID: 0}
   quickRefAPImage: {fileID: 0}
   pointSpent: 0
@@ -125,3 +128,16 @@ MonoBehaviour:
   playerHealth: {fileID: 0}
   quickRefHPImage: {fileID: 0}
   currentState: 0
+--- !u!114 &8964482985308790825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7861119648255627720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fb228b49cd36a458bac3d8b2619085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRadius: 1
