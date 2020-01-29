@@ -15750,6 +15750,24 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2103514540526965184, guid: a22edbae0430dc94f9f799f2ce60307a,
+        type: 3}
+      propertyPath: healingGem
+      value: 
+      objectReference: {fileID: 11400000, guid: f9124c970d6d3e7448446e7a26403b83,
+        type: 2}
+    - target: {fileID: 2103514540526965184, guid: a22edbae0430dc94f9f799f2ce60307a,
+        type: 3}
+      propertyPath: juranBerry
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ad44e33f87f6364e977fcbb851b925b,
+        type: 2}
+    - target: {fileID: 2103514540526965184, guid: a22edbae0430dc94f9f799f2ce60307a,
+        type: 3}
+      propertyPath: legitStrength
+      value: 
+      objectReference: {fileID: 11400000, guid: 716418eabfa97844eac768767b075c29,
+        type: 2}
     - target: {fileID: 3102170669242261963, guid: a22edbae0430dc94f9f799f2ce60307a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21585,7 +21603,7 @@ PrefabInstance:
     - target: {fileID: 672042900944901538, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RollDiceButton
+      value: HealthGemWagerButton
       objectReference: {fileID: 0}
     - target: {fileID: 672042900944901538, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
         type: 3}
@@ -21652,10 +21670,70 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3366459136398001054, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3366459136398001054, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3366459136398001054, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3366459136398001054, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2130874415}
+    - target: {fileID: 3366459136398001054, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StrengthUpWagerButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3366459136398001054, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6866075771818310497, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172430673340987909, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172430673340987909, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172430673340987909, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172430673340987909, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2130874415}
+    - target: {fileID: 8172430673340987909, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: JuranBerryWagerButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172430673340987909, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8819414759821914674, guid: 0a6ecedc501a5134a8001a9e8e0977a5,
         type: 3}

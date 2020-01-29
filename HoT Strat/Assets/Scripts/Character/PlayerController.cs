@@ -137,9 +137,9 @@ public class PlayerController : CharacterController
                     if (charHit.collider.tag == "Player")
                     {
                         SwapActivePlayer("ActivePlayer");
-                        gameObject.tag = "ActivePlayer";
+                        charHit.collider.tag = "ActivePlayer";
                         isActive = true;
-                        activePlayer = GameObject.Find("Active Player");
+                        activePlayer = GameObject.FindGameObjectWithTag("ActivePlayer");
 
                     }
                 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class CameraController : MonoBehaviour
     public Canvas diceViewCanvas;
     public bool diceViewEnabled = false;
 
+    public Button moveButton;
+    public Button runButton;
+
+    public PlayerController currentPlayer;
+
 
     void Start()
     {
@@ -40,9 +46,16 @@ public class CameraController : MonoBehaviour
         FindActivePlayer("ActivePlayer");
 
 
+
         if (foundCamTarget)
         {
             cameraControl.SetParent(playerTransform, false);
+
+            Button move = moveButton.GetComponent<Button>();
+            Button run = runButton.GetComponent<Button>();
+            move.onClick.AddListener(moveButton_onClick);
+            run.onClick.AddListener(runButton_onClick);
+
         }
 
         cameraControl.rotation = Quaternion.Euler(0, camHeading, 0);
@@ -75,6 +88,7 @@ public class CameraController : MonoBehaviour
         if(act)
         {
             FindNewActivePlayer(act.transform);
+            currentPlayer = act.GetComponentInChildren<PlayerController>();
 
         }
         else
@@ -100,4 +114,22 @@ public class CameraController : MonoBehaviour
 
 
     }
+
+    void moveButton_onClick()
+    {
+        if(foundCamTarget)
+        {
+            currentPlayer.MoveButton();
+        }
+    }
+
+    void runButton_onClick()
+    {
+        if(foundCamTarget)
+        {
+            currentPlayer.RunButton();
+        }
+    }
+
+    
 }
