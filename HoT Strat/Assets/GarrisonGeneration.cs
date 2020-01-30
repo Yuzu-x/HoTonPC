@@ -9,7 +9,7 @@ public class GarrisonGeneration : MonoBehaviour
     {
         
     }
-
+    //testing
     // Update is called once per frame
     void Update()
     {
