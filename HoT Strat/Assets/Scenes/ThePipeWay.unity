@@ -12330,6 +12330,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 390
       objectReference: {fileID: 0}
+    - target: {fileID: 5546360280048481907, guid: 2cbb8f871a8558348ab803aee527fd69,
+        type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1869971078}
     - target: {fileID: 5546360280048481908, guid: 2cbb8f871a8558348ab803aee527fd69,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27615,6 +27620,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8794594059644290961, guid: a43b8f7b49fb6dd4196cda72604edaf7,
     type: 3}
   m_PrefabInstance: {fileID: 1865437679}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1869971078 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 328044632141050751, guid: 057d9adc975423a4cb4d2ad782a3c79d,
+    type: 3}
+  m_PrefabInstance: {fileID: 196126361}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1874311760
 PrefabInstance:

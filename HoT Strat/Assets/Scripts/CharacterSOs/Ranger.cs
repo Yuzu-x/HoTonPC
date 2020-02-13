@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ranger : ScriptableObject
+public class Ranger : ClassBase
 {
 
 }

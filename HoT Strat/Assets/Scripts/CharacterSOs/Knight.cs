@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Knight : ScriptableObject
+public class Knight : ClassBase
 { 
+    public Knight()
+    {
 
+    }
 }
 

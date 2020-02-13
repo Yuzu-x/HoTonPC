@@ -51,6 +51,19 @@ public class CameraController : MonoBehaviour
         {
             cameraControl.SetParent(playerTransform, false);
 
+            cameraControl.localPosition = Vector3.zero;
+
+            cameraControl.rotation = Quaternion.Euler(0, camHeading, 0);
+            if (Input.GetKey(KeyCode.Q))
+            {
+                camHeading = camHeading - rotationSpeed;
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                camHeading = camHeading + rotationSpeed;
+            }
+
             Button move = moveButton.GetComponent<Button>();
             Button run = runButton.GetComponent<Button>();
             move.onClick.AddListener(moveButton_onClick);
@@ -58,18 +71,9 @@ public class CameraController : MonoBehaviour
 
         }
 
-        cameraControl.rotation = Quaternion.Euler(0, camHeading, 0);
 
 
-        if (Input.GetKey(KeyCode.Q))
-        {
-            camHeading = camHeading - rotationSpeed;
-        }
 
-        if (Input.GetKey(KeyCode.E))
-        {
-            camHeading = camHeading + rotationSpeed;
-        }
 
     }
 

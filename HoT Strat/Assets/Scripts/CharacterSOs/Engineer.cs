@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Engineer : ScriptableObject
+public class Engineer : ClassBase
 {
+    public Engineer()
+    {
 
+    }
 }

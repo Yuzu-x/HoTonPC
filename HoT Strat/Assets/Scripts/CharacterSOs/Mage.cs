@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mage : ScriptableObject
+public class Mage : ClassBase
 {
 
 }

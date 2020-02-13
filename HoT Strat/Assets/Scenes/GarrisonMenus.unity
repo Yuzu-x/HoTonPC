@@ -828,6 +828,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296760730}
   m_CullTransparentMesh: 0
+--- !u!1 &308363791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 308363792}
+  - component: {fileID: 308363794}
+  - component: {fileID: 308363793}
+  m_Layer: 5
+  m_Name: RecruitName
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &308363792
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308363791}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1966170672}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 57, y: -15}
+  m_SizeDelta: {x: 216, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &308363793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308363791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &308363794
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308363791}
+  m_CullTransparentMesh: 0
 --- !u!1 &455576957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,50 +1271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recruit: {fileID: 0}
---- !u!1 &684037081
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 684037082}
-  - component: {fileID: 684037083}
-  m_Layer: 0
-  m_Name: Available Recruit 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &684037082
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684037081}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -365.1468, y: -278.7432, z: 84}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1966170672}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &684037083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684037081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 266a96cf30a3c9a478382d1956fcf0ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recruit: {fileID: 11400000, guid: 52c6ed49542994349821676decdae25f, type: 2}
 --- !u!1 &699459296
 GameObject:
   m_ObjectHideFlags: 0
@@ -2433,18 +2466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ada105b2451bdf48b5e9af4b9dc85d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  garrisonCapacity: 10
-  currentGarrison: 0
-  role: 0
-  roleCapacity: 4
-  recruitClass: 0
-  recruitRace: 0
-  recruitMale: 0
-  recruitName: 
-  recruitClassEnglish: 
-  recruitID: 0
-  garrisonSlot: 0
-  garrisonSlotHolder: {fileID: 0}
 --- !u!1 &1291160828
 GameObject:
   m_ObjectHideFlags: 0
@@ -3401,7 +3422,7 @@ RectTransform:
   m_Children:
   - {fileID: 824525151}
   - {fileID: 1450213140}
-  - {fileID: 684037082}
+  - {fileID: 308363792}
   m_Father: {fileID: 1331186218}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3419,9 +3440,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1966170671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b941410c9138512409ba72e1a720848e, type: 3}
+  m_Script: {fileID: 11500000, guid: 94e7f4ac840241340828ac02dd0f6ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recruitClass: {fileID: 11400000, guid: 52c6ed49542994349821676decdae25f, type: 2}
+  recruitClassName: {fileID: 824525152}
+  recruitClassSymbol: {fileID: 1450213141}
+  recruitName: {fileID: 308363793}
 --- !u!114 &1966170674
 MonoBehaviour:
   m_ObjectHideFlags: 0

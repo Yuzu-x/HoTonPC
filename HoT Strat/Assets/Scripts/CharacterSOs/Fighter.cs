@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fighter : ScriptableObject
+public class Fighter : ClassBase
 {
 
 }

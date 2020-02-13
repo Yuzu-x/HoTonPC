@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Paladin : ScriptableObject
+public class Paladin : ClassBase
 {
-    public string paladinName;
-    public int focusPoints = 0;
-    public int maxHealthPoints = 390;
-
-    public float meleeSkill = 3;
-    public float rangeSkill = 3;
-
-    public float basicDamage = 16;
+public Paladin()
+    {
+        CharacterClassName = "Paladin";
+        CharacterClassDescription = "Through faith comes resilience and being tough to kill makes for a good Guardian. The holy power a Paladin channels can project a powerful aura that protects the Paladin from any harm and allows them to stand firm in the face of the strongest enemies. A Paladin can subjugate any foe and force them to repent their wicked ways.";
+        MoveRange = 6;
+        HealthPoints = 390;
+        MeleeSkill = 3;
+        RangedSkill = 3;
+        TotalActionPoints = 3;
+        BasicDamage = 16;
+    }
 
 
     //Patience variable list
@@ -113,17 +116,17 @@ public class Paladin : ScriptableObject
     {
         if (lightForgedRank == 1)
         {
-            basicDamage = basicDamage + 10;
+            BasicDamage = BasicDamage + 10;
         }
 
         if (lightForgedRank == 2)
         {
-            basicDamage = basicDamage + 20;
+            BasicDamage = BasicDamage + 20;
         }
 
         if (lightForgedRank == 3)
         {
-            basicDamage = basicDamage + 34;
+            BasicDamage = BasicDamage + 34;
         }
     }
 
@@ -131,38 +134,38 @@ public class Paladin : ScriptableObject
     {
         if (fortitudeRank == 1 || benevolenceRank == 1 || stoicismRank == 1)
         {
-            maxHealthPoints = 490;
-            basicDamage = 30;
+            HealthPoints = 490;
+            BasicDamage = 30;
 
         }
         else if (fortitudeRank == 2 || benevolenceRank == 2 || stoicismRank == 2)
         {
-            maxHealthPoints = 525;
-            basicDamage = 47;
+            HealthPoints = 525;
+            BasicDamage = 47;
 
         }
         else if (fortitudeRank == 3 || benevolenceRank == 3 || stoicismRank == 3)
         {
-            maxHealthPoints = 570;
-            basicDamage = 58;
+            HealthPoints = 570;
+            BasicDamage = 58;
 
         }
         else if (fortitudeRank == 4 || benevolenceRank == 4 || stoicismRank == 4)
         {
-            maxHealthPoints = 620;
-            basicDamage = 69;
+            HealthPoints = 620;
+            BasicDamage = 69;
 
         }
         else if (fortitudeRank == 5 || benevolenceRank == 5 || stoicismRank == 5)
         {
-            maxHealthPoints = 705;
-            basicDamage = 80;
+            HealthPoints = 705;
+            BasicDamage = 80;
 
         }
         else if (fortitudeRank == 6 || benevolenceRank == 6 || stoicismRank == 6)
         {
-            maxHealthPoints = 800;
-            basicDamage = 95;
+            HealthPoints = 800;
+            BasicDamage = 95;
 
         }
     }
