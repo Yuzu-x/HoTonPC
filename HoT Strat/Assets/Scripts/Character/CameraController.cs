@@ -98,7 +98,6 @@ public class CameraController : MonoBehaviour
         else
         {
             ControlCamera();
-            Debug.Log("Unable to find " + _tag);
         }
     }
 

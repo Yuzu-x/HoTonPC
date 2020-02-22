@@ -35,7 +35,6 @@ public class Interact : MonoBehaviour
 
             origin = originLocation.transform;
             inRange = true;
-            Debug.Log("Currently, origin is " + origin);
         }
 
         if(inRange)
