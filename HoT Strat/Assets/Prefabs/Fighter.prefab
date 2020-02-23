@@ -145,17 +145,17 @@ MonoBehaviour:
   moveSelected: 0
   runSelected: 0
   actualTargetTile: {fileID: 0}
-  moveRange: 0
-  runRange: 0
+  moveRange: 6
+  runRange: 3
   jumpHeight: 3
   characterMoveSpeed: 2
   jumpVelocity: 4.5
-  maxActionPointsNS: 4
+  maxActionPointsNS: 3
   currentActionPointsNS: 0
   actionPointImage: {fileID: 0}
   quickRefAPImage: {fileID: 0}
   pointSpent: 0
-  maxHealth: 100
+  maxHealth: 270
   currentHealth: 10
   playerHealth: {fileID: 0}
   quickRefHPImage: {fileID: 0}
@@ -169,6 +169,8 @@ MonoBehaviour:
   myInventory: 0
   playerInventory: {fileID: 0}
   activeInventorySlotPanel: {fileID: 0}
+  moveButton: {fileID: 0}
+  runButton: {fileID: 0}
   interestTime: 0
 --- !u!114 &6979765115716468287
 MonoBehaviour:
