@@ -56,7 +56,7 @@ public class PlayerController : CharacterController
     {
         if(gameObject.tag == "ActivePlayer")
         {
-            moveButton.onClick.AddListener(MoveButton);
+           moveButton.onClick.AddListener(MoveButton);
             isActive = true;
         }
         else if(gameObject.tag != "ActivePlayer")
@@ -187,6 +187,8 @@ public class PlayerController : CharacterController
                 else
                 {
                     Move();
+                    moveActionsThisTurn = moveActionsThisTurn + 1;
+                    movesMadeThisTurn = movesMadeThisTurn + 1;
                 }
             }
             else
@@ -265,7 +267,6 @@ public class PlayerController : CharacterController
                 if (moveActionsThisTurn == 0)
                 {
                     currentState = TurnState.MOVING;
-                    movesMadeThisTurn += 1f;
                 }
                 else
                 {
@@ -297,6 +298,7 @@ public class PlayerController : CharacterController
         if (isActive)
         {
             currentState = TurnState.RUNNING;
+            fatigue = fatigue + 1;
         }
     }
 

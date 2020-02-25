@@ -8,6 +8,8 @@ public class RecruitClass : ScriptableObject
 {
     public string myName;
     public string myClass;
+    public int myRace;
+    public int mySex;
     public Sprite myClassSymbol;
 
     public int myClassNumeric;

@@ -10,6 +10,7 @@ public class ButtonManager : MonoBehaviour
 
     public Button moveButton;
     public Button runButton;
+    public Button endButton;
     public Image activeHealth;
     public Image activeAP;
     public Image activeInv;
@@ -26,5 +27,12 @@ public class ButtonManager : MonoBehaviour
     public void MoveButtonMana()
     {
         activePlayer.GetComponent<PlayerController>().MoveButton();
+        //activePlayer.GetComponent<PlayerController>().EndTurnButton();
+    }
+
+    public void RunButtonMana()
+    {
+
+        activePlayer.GetComponent<PlayerController>().RunButton();
     }
 }

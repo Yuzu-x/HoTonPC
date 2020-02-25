@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: 4588338576764601275}
   - component: {fileID: 8439841443966890923}
   - component: {fileID: 7769810582510629908}
-  - component: {fileID: 680813318175596533}
   - component: {fileID: 6979765115716468287}
   - component: {fileID: 7890172951273862547}
+  - component: {fileID: 6934560968664043766}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -89,6 +89,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -100,6 +101,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -126,52 +128,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &680813318175596533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671591201190309010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daae8fe3d92e4f34fbf61607b7fb99bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myTurn: 0
-  isMoving: 0
-  hasSelectedMove: 0
-  isActive: 0
-  moveSelected: 0
-  runSelected: 0
-  actualTargetTile: {fileID: 0}
-  moveRange: 6
-  runRange: 3
-  jumpHeight: 3
-  characterMoveSpeed: 2
-  jumpVelocity: 4.5
-  maxActionPointsNS: 3
-  currentActionPointsNS: 0
-  actionPointImage: {fileID: 0}
-  quickRefAPImage: {fileID: 0}
-  pointSpent: 0
-  maxHealth: 270
-  currentHealth: 10
-  playerHealth: {fileID: 0}
-  quickRefHPImage: {fileID: 0}
-  currentState: 0
-  activePlayer: {fileID: 0}
-  isPlayer: 1
-  playerIndicator: {fileID: 0}
-  pIndicator: 0
-  moveActual: 6
-  movesMadeThisTurn: 0
-  myInventory: 0
-  playerInventory: {fileID: 0}
-  activeInventorySlotPanel: {fileID: 0}
-  moveButton: {fileID: 0}
-  runButton: {fileID: 0}
-  interestTime: 0
 --- !u!114 &6979765115716468287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,3 +155,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRadius: 2
+--- !u!114 &6934560968664043766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671591201190309010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 965f787a5b1215347ac235fc6d960386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTurn: 0
+  isMoving: 0
+  hasSelectedMove: 0
+  isActive: 0
+  moveSelected: 0
+  runSelected: 0
+  actualTargetTile: {fileID: 0}
+  moveRange: 6
+  runRange: 6
+  jumpHeight: 3
+  characterMoveSpeed: 2
+  jumpVelocity: 4.5
+  maxActionPointsNS: 3
+  currentActionPointsNS: 0
+  actionPointImage: {fileID: 0}
+  quickRefAPImage: {fileID: 0}
+  pointSpent: 0
+  maxHealth: 270
+  currentHealth: 10
+  playerHealth: {fileID: 0}
+  quickRefHPImage: {fileID: 0}
+  currentState: 0
+  activePlayer: {fileID: 0}
+  isPlayer: 1
+  playerIndicator: {fileID: 0}
+  pIndicator: 0
+  moveActual: 6
+  movesMadeThisTurn: 0
+  myInventory: 0
+  playerInventory: {fileID: 0}
+  activeInventorySlotPanel: {fileID: 0}
+  moveButton: {fileID: 0}
+  runButton: {fileID: 0}
+  interestTime: 0

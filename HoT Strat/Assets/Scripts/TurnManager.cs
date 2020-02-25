@@ -86,7 +86,6 @@ public class TurnManager : MonoBehaviour
             string team = turnKey.Dequeue();
             turnKey.Enqueue(team);
             InitTeamTurnQueue();
-            turnCount = turnCount + 1f;
 
         }
     }

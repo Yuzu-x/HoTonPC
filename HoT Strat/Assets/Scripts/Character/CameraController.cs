@@ -26,9 +26,6 @@ public class CameraController : MonoBehaviour
     public Canvas diceViewCanvas;
     public bool diceViewEnabled = false;
 
-    public Button moveButton;
-    public Button runButton;
-
     public PlayerController currentPlayer;
 
 
@@ -64,10 +61,6 @@ public class CameraController : MonoBehaviour
                 camHeading = camHeading + rotationSpeed;
             }
 
-            Button move = moveButton.GetComponent<Button>();
-            Button run = runButton.GetComponent<Button>();
-            move.onClick.AddListener(moveButton_onClick);
-            run.onClick.AddListener(runButton_onClick);
 
         }
 
@@ -118,21 +111,4 @@ public class CameraController : MonoBehaviour
 
     }
 
-    void moveButton_onClick()
-    {
-        if(foundCamTarget)
-        {
-            currentPlayer.MoveButton();
-        }
-    }
-
-    void runButton_onClick()
-    {
-        if(foundCamTarget)
-        {
-            currentPlayer.RunButton();
-        }
-    }
-
-    
 }
