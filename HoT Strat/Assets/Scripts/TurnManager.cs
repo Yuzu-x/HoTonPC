@@ -46,7 +46,6 @@ public class TurnManager : MonoBehaviour
             turnTeam.Enqueue(unit);
         }
 
-        turnCount = turnCount + 1f;
 
         StartTurn();
     }
@@ -56,7 +55,7 @@ public class TurnManager : MonoBehaviour
         CharacterController.currentActionPoints = CharacterController.maxActionPoints;
         CharacterController.moveActionsThisTurn = 0f;
 
-
+        
 
 
         if (turnTeam.Count > 0)
@@ -64,6 +63,7 @@ public class TurnManager : MonoBehaviour
             turnTeam.Peek().TurnBegin();
 
         }
+
     }
 
     void TurnCountUpdate()

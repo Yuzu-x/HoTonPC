@@ -312,6 +312,7 @@ public class PlayerController : CharacterController
             TurnManager.playerTurn = false;
             TurnManager.enemyTurn = true;
             movesMadeThisTurn = 0f;
+            TurnManager.turnCount = TurnManager.turnCount + 1f;
         }
     }
 
